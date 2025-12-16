@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<universityResearch xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="schema.xsd">
+  <researchers>
+    <researcher id="r1">
+      <name>Dr. Anna Petrova</name>
+      <affiliation>AI Systems Lab</affiliation>
+      <email>anna.petrova@uni.example</email>
+      <orcid>0000-0001-2345-6789</orcid>
+    </researcher>
+    <researcher id="r2">
+      <name>Prof. Boris Ivanov</name>
+      <affiliation>Data Engineering Center</affiliation>
+      <email>boris.ivanov@uni.example</email>
+      <orcid>0000-0002-1357-2468</orcid>
+    </researcher>
+    <researcher id="r3">
+      <name>Dr. Chen Liu</name>
+      <affiliation>Urban Computing Group</affiliation>
+      <email>chen.liu@uni.example</email>
+      <orcid>0000-0003-1122-3344</orcid>
+    </researcher>
+    <researcher id="r4">
+      <name>Dr. Diana Smirnova</name>
+      <affiliation>Secure Genomics Lab</affiliation>
+      <email>diana.smirnova@uni.example</email>
+      <orcid>0000-0004-5566-7788</orcid>
+    </researcher>
+    <researcher id="r5">
+      <name>Alex Meyer</name>
+      <affiliation>Energy Analytics Unit</affiliation>
+      <email>alex.meyer@uni.example</email>
+      <orcid>0000-0005-8899-0011</orcid>
+    </researcher>
+    <researcher id="r6">
+      <name>Maria Rossi</name>
+      <affiliation>Natural Language Processing Lab</affiliation>
+      <email>maria.rossi@uni.example</email>
+      <orcid>0000-0006-2020-3030</orcid>
+    </researcher>
+    <researcher id="r7">
+      <name>Igor Petrenko</name>
+      <affiliation>Energy Analytics Unit</affiliation>
+      <email>igor.petrenko@uni.example</email>
+      <orcid>0000-0007-4141-5252</orcid>
+    </researcher>
+    <researcher id="r8">
+      <name>Sara Khan</name>
+      <affiliation>AI Systems Lab</affiliation>
+      <email>sara.khan@uni.example</email>
+      <orcid>0000-0008-6262-7373</orcid>
+    </researcher>
+  </researchers>
+
+  <funders>
+    <funder id="f1">
+      <name>National Science Foundation</name>
+      <program>National AI Initiative</program>
+    </funder>
+    <funder id="f2">
+      <name>Horizon Europe</name>
+      <program>Green Deal Call</program>
+    </funder>
+    <funder id="f3">
+      <name>TechCorp Research</name>
+      <program>Industry Collaboration</program>
+    </funder>
+    <funder id="f4">
+      <name>Health Data Trust</name>
+      <program>Secure Data Grants</program>
+    </funder>
+  </funders>
+
+  <datasetsCatalog>
+    <dataset id="ds-001">
+      <title>Adaptive Learning Interaction Logs</title>
+      <format>json</format>
+      <sizeGB>12.5</sizeGB>
+      <access>
+        <url>https://data.example.org/datasets/learning-logs</url>
+        <license>CC-BY-4.0</license>
+      </access>
+    </dataset>
+    <dataset id="ds-002">
+      <title>Urban Air Sensor Grid</title>
+      <format>csv</format>
+      <sizeGB>8.1</sizeGB>
+      <access>
+        <url>https://data.example.org/datasets/air-grid</url>
+        <license>ODC-By</license>
+      </access>
+    </dataset>
+    <dataset id="ds-003">
+      <title>Encrypted Genomic Variants</title>
+      <format>parquet</format>
+      <sizeGB>32.0</sizeGB>
+      <access>
+        <url>https://vault.example.org/genomics/encrypted</url>
+        <license>Restricted</license>
+      </access>
+    </dataset>
+    <dataset id="ds-004">
+      <title>Synthetic Genomic Benchmarks</title>
+      <format>hdf5</format>
+      <sizeGB>5.7</sizeGB>
+      <access>
+        <url>https://data.example.org/datasets/synth-genome</url>
+        <license>CC-BY-SA-4.0</license>
+      </access>
+    </dataset>
+    <dataset id="ds-005">
+      <title>Microgrid Telemetry Streams</title>
+      <format>parquet</format>
+      <sizeGB>18.4</sizeGB>
+      <access>
+        <url>https://data.example.org/datasets/microgrid</url>
+        <license>CC-BY-4.0</license>
+      </access>
+    </dataset>
+    <dataset id="ds-006">
+      <title>Multilingual QA Corpus</title>
+      <format>json</format>
+      <sizeGB>9.6</sizeGB>
+      <access>
+        <url>https://data.example.org/datasets/qa-corpus</url>
+        <license>CC-BY-4.0</license>
+      </access>
+    </dataset>
+  </datasetsCatalog>
+
+  <projects>
+    <project id="proj-001" start="2024-01-15" end="2025-12-31" status="active">
+      <title>Adaptive Learning Digital Twins</title>
+      <abstract>Digital twins for personalized learning with behavior modeling and rapid A/B validation.</abstract>
+      <participants>
+        <participant researcherRef="r1" role="principal-investigator" commitment="0.6"/>
+        <participant researcherRef="r8" role="data-engineer" commitment="0.5"/>
+        <participant researcherRef="r2" role="advisor" commitment="0.2"/>
+      </participants>
+      <publications>
+        <publication id="pub-001" year="2024" type="journal" doi="10.1234/twins.2024.001">
+          <title>Behavior-Aware Digital Twins for Adaptive Learning</title>
+          <authors>
+            <author researcherRef="r1"/>
+            <author researcherRef="r8"/>
+          </authors>
+        </publication>
+        <publication id="pub-002" year="2025" type="conference" doi="10.1234/edtech.2025.010">
+          <title>Rapid Experimentation with Synthetic Learner Personas</title>
+          <authors>
+            <author researcherRef="r1"/>
+            <author researcherRef="r2"/>
+          </authors>
+        </publication>
+      </publications>
+      <funding>
+        <grant id="g-001" funderRef="f1" amount="250000" currency="USD" start="2024-01-01" end="2025-12-31">
+          <program>National AI Initiative</program>
+          <allocation>
+            <workPackage name="Data Collection" percentage="35"/>
+            <workPackage name="Modeling" percentage="45"/>
+            <workPackage name="Dissemination" percentage="20"/>
+          </allocation>
+        </grant>
+      </funding>
+      <datasets>
+        <datasetRef ref="ds-001" usage="training"/>
+      </datasets>
+    </project>
+
+    <project id="proj-002" start="2023-09-01" end="2025-06-30" status="active">
+      <title>Urban Air Quality Predictive Maps</title>
+      <abstract>Near real-time pollution forecasting combining sensor grids and satellite feeds.</abstract>
+      <participants>
+        <participant researcherRef="r3" role="principal-investigator" commitment="0.7"/>
+        <participant researcherRef="r2" role="data-engineer" commitment="0.4"/>
+        <participant researcherRef="r8" role="analyst" commitment="0.3"/>
+      </participants>
+      <publications>
+        <publication id="pub-003" year="2024" type="journal" doi="10.5678/air.2024.015">
+          <title>Spatio-Temporal Transformers for Urban Pollution</title>
+          <authors>
+            <author researcherRef="r3"/>
+            <author researcherRef="r2"/>
+          </authors>
+        </publication>
+      </publications>
+      <funding>
+        <grant id="g-002" funderRef="f2" amount="180000" currency="EUR" start="2023-09-01" end="2025-06-30">
+          <program>Green Deal Call</program>
+          <allocation>
+            <workPackage name="Sensing" percentage="30"/>
+            <workPackage name="Modeling" percentage="40"/>
+            <workPackage name="Community Tools" percentage="30"/>
+          </allocation>
+        </grant>
+      </funding>
+      <datasets>
+        <datasetRef ref="ds-002" usage="training"/>
+        <datasetRef ref="ds-001" usage="validation"/>
+      </datasets>
+    </project>
+
+    <project id="proj-003" start="2024-03-10" end="2026-02-28" status="active">
+      <title>Privacy-Preserving Genomic Analytics</title>
+      <abstract>Federated learning for genomic risk scores with secure enclaves and differential privacy.</abstract>
+      <participants>
+        <participant researcherRef="r4" role="principal-investigator" commitment="0.6"/>
+        <participant researcherRef="r2" role="advisor" commitment="0.2"/>
+        <participant researcherRef="r5" role="analyst" commitment="0.4"/>
+        <participant researcherRef="r7" role="data-engineer" commitment="0.4"/>
+      </participants>
+      <publications>
+        <publication id="pub-004" year="2025" type="preprint" doi="10.9012/genome.2025.041">
+          <title>Secure Aggregation Pipelines for Clinical Genomics</title>
+          <authors>
+            <author researcherRef="r4"/>
+            <author researcherRef="r7"/>
+          </authors>
+        </publication>
+      </publications>
+      <funding>
+        <grant id="g-003" funderRef="f4" amount="320000" currency="USD" start="2024-03-10" end="2026-02-28">
+          <program>Secure Data Grants</program>
+          <allocation>
+            <workPackage name="Security" percentage="40"/>
+            <workPackage name="Federated Learning" percentage="40"/>
+            <workPackage name="Clinical Validation" percentage="20"/>
+          </allocation>
+        </grant>
+      </funding>
+      <datasets>
+        <datasetRef ref="ds-003" usage="training"/>
+        <datasetRef ref="ds-004" usage="validation"/>
+      </datasets>
+    </project>
+
+    <project id="proj-004" start="2022-11-01" end="2024-10-31" status="completed">
+      <title>Renewable Microgrid Optimization</title>
+      <abstract>Optimization of islanded microgrids with reinforcement learning controllers.</abstract>
+      <participants>
+        <participant researcherRef="r5" role="principal-investigator" commitment="0.5"/>
+        <participant researcherRef="r7" role="data-engineer" commitment="0.5"/>
+        <participant researcherRef="r3" role="advisor" commitment="0.2"/>
+      </participants>
+      <publications>
+        <publication id="pub-005" year="2023" type="conference" doi="10.3456/grid.2023.077">
+          <title>Safe Exploration for Microgrid Control</title>
+          <authors>
+            <author researcherRef="r5"/>
+            <author researcherRef="r7"/>
+          </authors>
+        </publication>
+        <publication id="pub-006" year="2024" type="journal" doi="10.3456/grid.2024.102">
+          <title>Hybrid Simulation Pipelines for Community Microgrids</title>
+          <authors>
+            <author researcherRef="r5"/>
+            <author researcherRef="r3"/>
+          </authors>
+        </publication>
+      </publications>
+      <funding>
+        <grant id="g-004" funderRef="f3" amount="210000" currency="USD" start="2022-11-01" end="2024-10-31">
+          <program>Industry Collaboration</program>
+          <allocation>
+            <workPackage name="Control" percentage="50"/>
+            <workPackage name="Simulation" percentage="30"/>
+            <workPackage name="Deployment" percentage="20"/>
+          </allocation>
+        </grant>
+      </funding>
+      <datasets>
+        <datasetRef ref="ds-005" usage="training"/>
+        <datasetRef ref="ds-002" usage="benchmark"/>
+      </datasets>
+    </project>
+
+    <project id="proj-005" start="2023-04-01" end="2025-03-31" status="active">
+      <title>Multilingual Document QA</title>
+      <abstract>Knowledge-grounded question answering with retrieval-augmented generation for 10 languages.</abstract>
+      <participants>
+        <participant researcherRef="r6" role="principal-investigator" commitment="0.6"/>
+        <participant researcherRef="r1" role="advisor" commitment="0.2"/>
+        <participant researcherRef="r8" role="data-engineer" commitment="0.4"/>
+      </participants>
+      <publications>
+        <publication id="pub-007" year="2024" type="journal" doi="10.7890/nlp.2024.055">
+          <title>Hallucination-Resistant QA with Source Attribution</title>
+          <authors>
+            <author researcherRef="r6"/>
+            <author researcherRef="r1"/>
+          </authors>
+        </publication>
+      </publications>
+      <funding>
+        <grant id="g-005" funderRef="f1" amount="150000" currency="USD" start="2023-04-01" end="2025-03-31">
+          <program>National AI Initiative</program>
+          <allocation>
+            <workPackage name="Corpus" percentage="30"/>
+            <workPackage name="Modeling" percentage="50"/>
+            <workPackage name="Evaluation" percentage="20"/>
+          </allocation>
+        </grant>
+      </funding>
+      <datasets>
+        <datasetRef ref="ds-006" usage="training"/>
+        <datasetRef ref="ds-001" usage="evaluation"/>
+      </datasets>
+    </project>
+  </projects>
+</universityResearch>

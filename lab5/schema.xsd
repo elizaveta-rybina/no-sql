@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+  <xs:simpleType name="roleType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="principal-investigator"/>
+      <xs:enumeration value="co-investigator"/>
+      <xs:enumeration value="analyst"/>
+      <xs:enumeration value="data-engineer"/>
+      <xs:enumeration value="student"/>
+      <xs:enumeration value="advisor"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="statusType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="planning"/>
+      <xs:enumeration value="active"/>
+      <xs:enumeration value="completed"/>
+      <xs:enumeration value="on-hold"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="formatType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="csv"/>
+      <xs:enumeration value="json"/>
+      <xs:enumeration value="parquet"/>
+      <xs:enumeration value="hdf5"/>
+      <xs:enumeration value="geojson"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="currencyType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="USD"/>
+      <xs:enumeration value="EUR"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="usageType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="training"/>
+      <xs:enumeration value="validation"/>
+      <xs:enumeration value="evaluation"/>
+      <xs:enumeration value="benchmark"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="publicationType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="journal"/>
+      <xs:enumeration value="conference"/>
+      <xs:enumeration value="dataset-paper"/>
+      <xs:enumeration value="preprint"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="doiType">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="10\.[0-9]{4,9}/.+"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="emailType">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[^\s@]+@[^\s@]+\.[^\s@]+"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="researcherType">
+    <xs:sequence>
+      <xs:element name="name" type="xs:string"/>
+      <xs:element name="affiliation" type="xs:string"/>
+      <xs:element name="email" type="emailType"/>
+      <xs:element name="orcid" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:ID" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="researchersType">
+    <xs:sequence>
+      <xs:element name="researcher" type="researcherType" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="funderType">
+    <xs:sequence>
+      <xs:element name="name" type="xs:string"/>
+      <xs:element name="program" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:ID" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="fundersType">
+    <xs:sequence>
+      <xs:element name="funder" type="funderType" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="accessType">
+    <xs:sequence>
+      <xs:element name="url" type="xs:anyURI"/>
+      <xs:element name="license" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="datasetType">
+    <xs:sequence>
+      <xs:element name="title" type="xs:string"/>
+      <xs:element name="format" type="formatType"/>
+      <xs:element name="sizeGB" type="xs:decimal"/>
+      <xs:element name="access" type="accessType"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:ID" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="datasetsCatalogType">
+    <xs:sequence>
+      <xs:element name="dataset" type="datasetType" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="participantType">
+    <xs:attribute name="researcherRef" type="xs:IDREF" use="required"/>
+    <xs:attribute name="role" type="roleType" use="required"/>
+    <xs:attribute name="commitment" type="xs:decimal" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="participantsType">
+    <xs:sequence>
+      <xs:element name="participant" type="participantType" minOccurs="1" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="authorType">
+    <xs:attribute name="researcherRef" type="xs:IDREF" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="publicationType">
+    <xs:sequence>
+      <xs:element name="title" type="xs:string"/>
+      <xs:element name="authors">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="author" type="authorType" minOccurs="1" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:ID" use="required"/>
+    <xs:attribute name="year" type="xs:gYear" use="required"/>
+    <xs:attribute name="type" type="publicationType" use="required"/>
+    <xs:attribute name="doi" type="doiType" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="publicationsType">
+    <xs:sequence>
+      <xs:element name="publication" type="publicationType" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="workPackageType">
+    <xs:attribute name="name" type="xs:string" use="required"/>
+    <xs:attribute name="percentage" type="xs:decimal" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="grantType">
+    <xs:sequence>
+      <xs:element name="program" type="xs:string" minOccurs="0"/>
+      <xs:element name="allocation" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="workPackage" type="workPackageType" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:ID" use="required"/>
+    <xs:attribute name="funderRef" type="xs:IDREF" use="required"/>
+    <xs:attribute name="amount" type="xs:decimal" use="required"/>
+    <xs:attribute name="currency" type="currencyType" use="required"/>
+    <xs:attribute name="start" type="xs:date" use="required"/>
+    <xs:attribute name="end" type="xs:date" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="fundingType">
+    <xs:sequence>
+      <xs:element name="grant" type="grantType" minOccurs="1" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="datasetRefType">
+    <xs:attribute name="ref" type="xs:IDREF" use="required"/>
+    <xs:attribute name="usage" type="usageType" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="datasetsType">
+    <xs:sequence>
+      <xs:element name="datasetRef" type="datasetRefType" minOccurs="1" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="projectType">
+    <xs:sequence>
+      <xs:element name="title" type="xs:string"/>
+      <xs:element name="abstract" type="xs:string"/>
+      <xs:element name="participants" type="participantsType"/>
+      <xs:element name="publications" type="publicationsType"/>
+      <xs:element name="funding" type="fundingType"/>
+      <xs:element name="datasets" type="datasetsType"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:ID" use="required"/>
+    <xs:attribute name="start" type="xs:date" use="required"/>
+    <xs:attribute name="end" type="xs:date" use="required"/>
+    <xs:attribute name="status" type="statusType" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="projectsType">
+    <xs:sequence>
+      <xs:element name="project" type="projectType" minOccurs="5" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:element name="universityResearch">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="researchers" type="researchersType"/>
+        <xs:element name="funders" type="fundersType"/>
+        <xs:element name="datasetsCatalog" type="datasetsCatalogType"/>
+        <xs:element name="projects" type="projectsType"/>
+      </xs:sequence>
+    </xs:complexType>
+    <xs:key name="projectIds">
+      <xs:selector xpath="projects/project"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+    <xs:key name="researcherIds">
+      <xs:selector xpath="researchers/researcher"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+    <xs:key name="funderIds">
+      <xs:selector xpath="funders/funder"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+    <xs:key name="datasetIds">
+      <xs:selector xpath="datasetsCatalog/dataset"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+    <xs:keyref name="participantResearcherRef" refer="researcherIds">
+      <xs:selector xpath="projects/project/participants/participant"/>
+      <xs:field xpath="@researcherRef"/>
+    </xs:keyref>
+    <xs:keyref name="authorResearcherRef" refer="researcherIds">
+      <xs:selector xpath="projects/project/publications/publication/authors/author"/>
+      <xs:field xpath="@researcherRef"/>
+    </xs:keyref>
+    <xs:keyref name="grantFunderRef" refer="funderIds">
+      <xs:selector xpath="projects/project/funding/grant"/>
+      <xs:field xpath="@funderRef"/>
+    </xs:keyref>
+    <xs:keyref name="datasetRefKey" refer="datasetIds">
+      <xs:selector xpath="projects/project/datasets/datasetRef"/>
+      <xs:field xpath="@ref"/>
+    </xs:keyref>
+  </xs:element>
+</xs:schema>
