@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Cassandra Web UI</title>
+		<link rel="stylesheet" href="styles.css" />
+	</head>
+	<body>
+		<div class="container">
+			<div class="header">
+				<h1>
+					<span class="logo">🗄️</span>
+					<span>Cassandra Web UI</span>
+				</h1>
+				<div class="status-badge">
+					<span class="status" id="status"></span>
+					<span id="statusText">Подключение...</span>
+				</div>
+				<div class="status-badge" style="background: #eef2ff; color: #4f46e5">
+					<span>Keyspace:</span>
+					<span id="keyspaceLabel" style="font-weight: 700">не выбран</span>
+				</div>
+			</div>
+
+			<div class="grid">
+				<div>
+					<div class="panel">
+						<h3>📚 Keyspaces</h3>
+						<div id="keyspaces" class="sidebar"></div>
+					</div>
+				</div>
+
+				<div>
+					<div class="panel">
+						<h3>✍️ CQL Query Editor</h3>
+						<div class="query-section">
+							<div class="query-wrapper">
+								<textarea
+									id="query"
+									placeholder="Введите CQL запрос... (Ctrl/Cmd + Enter для выполнения)"
+								>
+SELECT * FROM system.local;</textarea
+								>
+							</div>
+							<div class="button-group">
+								<button onclick="executeQuery()" id="executeBtn">
+									▶️ Выполнить запрос
+								</button>
+								<button onclick="clearQuery()" class="clear-btn">
+									🗑️ Очистить
+								</button>
+							</div>
+							<div class="example-queries">
+								<button
+									class="example-btn"
+									onclick="setQuery('DESCRIBE KEYSPACES;')"
+								>
+									📋 DESCRIBE KEYSPACES
+								</button>
+								<button
+									class="example-btn"
+									onclick="setQuery('SELECT * FROM system_schema.keyspaces;')"
+								>
+									📦 Показать keyspaces
+								</button>
+								<button
+									class="example-btn"
+									onclick="setQuery('SELECT * FROM system.local;')"
+								>
+									ℹ️ System info
+								</button>
+								<button
+									class="example-btn"
+									onclick="setQuery('SELECT * FROM system.peers;')"
+								>
+									🌐 Cluster peers
+								</button>
+							</div>
+						</div>
+						<div id="result" class="result-container"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script src="script.js"></script>
+	</body>
+</html>

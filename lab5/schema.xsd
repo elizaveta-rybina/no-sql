@@ -136,7 +136,7 @@
     <xs:attribute name="researcherRef" type="xs:IDREF" use="required"/>
   </xs:complexType>
 
-  <xs:complexType name="publicationType">
+  <xs:complexType name="publicationElementType">
     <xs:sequence>
       <xs:element name="title" type="xs:string"/>
       <xs:element name="authors">
@@ -155,7 +155,7 @@
 
   <xs:complexType name="publicationsType">
     <xs:sequence>
-      <xs:element name="publication" type="publicationType" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="publication" type="publicationElementType" minOccurs="0" maxOccurs="unbounded"/>
     </xs:sequence>
   </xs:complexType>
 
