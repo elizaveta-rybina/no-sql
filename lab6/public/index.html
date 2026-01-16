@@ -51,6 +51,18 @@ SELECT * FROM system.local;</textarea
 									🗑️ Очистить
 								</button>
 							</div>
+							<div
+								class="button-group"
+								style="margin-top: 8px; flex-wrap: wrap; gap: 8px"
+							>
+								<button onclick="runFile('tasks')">
+									▶️ Выполнить tasks.txt
+								</button>
+								<button onclick="runFile('data')">▶️ Выполнить data.txt</button>
+								<span style="font-size: 13px; color: #4a5568; line-height: 1.4"
+									>Скрипты выполняются в выбранном keyspace.</span
+								>
+							</div>
 							<div class="example-queries">
 								<button
 									class="example-btn"

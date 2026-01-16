@@ -2,6 +2,7 @@ const express = require('express')
 const cassandra = require('cassandra-driver')
 const bodyParser = require('body-parser')
 const path = require('path')
+const fs = require('fs')
 
 const app = express()
 app.use(bodyParser.json())
@@ -15,6 +16,18 @@ const clientOptions = {
 }
 
 const client = new cassandra.Client(clientOptions)
+
+const allowedScriptFiles = {
+	tasks: path.join(__dirname, 'tasks.txt'),
+	data: path.join(__dirname, 'data.txt')
+}
+
+function sanitizeKeyspaceName(name) {
+	if (!name) return null
+	const safe = name.replace(/[^a-zA-Z0-9_]/g, '')
+	if (!safe) throw new Error('Invalid keyspace name')
+	return safe
+}
 
 // helper: fetch columns for a table
 async function getTableColumns(keyspace, table) {
@@ -93,10 +106,7 @@ app.post('/api/query', async (req, res) => {
 		// Безопасное имя keyspace и выполнение запроса в его контексте
 		let result
 		if (keyspace) {
-			const safeKeyspace = keyspace.replace(/[^a-zA-Z0-9_]/g, '')
-			if (safeKeyspace.length === 0) {
-				return res.status(400).json({ error: 'Invalid keyspace name' })
-			}
+			const safeKeyspace = sanitizeKeyspaceName(keyspace)
 			const ksClient = new cassandra.Client({
 				...clientOptions,
 				keyspace: safeKeyspace
@@ -117,6 +127,76 @@ app.post('/api/query', async (req, res) => {
 		})
 	} catch (err) {
 		res.status(500).json({ error: err.message })
+	}
+})
+
+app.post('/api/run-file', async (req, res) => {
+	try {
+		if (!connected)
+			return res.status(503).json({ error: 'Not connected to Cassandra' })
+
+		const { file, keyspace } = req.body
+		const filePath = allowedScriptFiles[file]
+		if (!filePath)
+			return res.status(400).json({ error: 'Unsupported file name' })
+
+		const raw = await fs.promises.readFile(filePath, 'utf8')
+		const cleaned = raw
+			.split('\n')
+			.filter(line => !line.trim().startsWith('--'))
+			.join('\n')
+		const queries = cleaned
+			.split(';')
+			.map(q => q.trim())
+			.filter(q => q.length > 0)
+
+		if (queries.length === 0)
+			return res.status(400).json({ error: 'No queries found in file' })
+
+		let execClient = client
+		let tempClient = null
+
+		if (keyspace) {
+			const safeKeyspace = sanitizeKeyspaceName(keyspace)
+			tempClient = new cassandra.Client({
+				...clientOptions,
+				keyspace: safeKeyspace
+			})
+			await tempClient.connect()
+			execClient = tempClient
+		}
+
+		const results = []
+		let successCount = 0
+		let errorCount = 0
+
+		for (const q of queries) {
+			try {
+				const r = await execClient.execute(q)
+				results.push({
+					query: q,
+					success: true,
+					columns: r.columns ? r.columns.map(c => c.name) : [],
+					rowCount: r.rowLength,
+					rows: r.rows
+				})
+				successCount++
+			} catch (err) {
+				results.push({ query: q, success: false, error: err.message })
+				errorCount++
+			}
+		}
+
+		if (tempClient) await tempClient.shutdown().catch(() => {})
+
+		return res.json({
+			total: queries.length,
+			successCount,
+			errorCount,
+			results
+		})
+	} catch (err) {
+		return res.status(500).json({ error: err.message })
 	}
 })
 

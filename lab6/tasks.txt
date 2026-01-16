@@ -1,0 +1,156 @@
+USE bookstore;
+-- 1
+--Получение всех книг конкретного автора
+--Запрос
+--частый
+--author_id является partition key, поэтому Cassandra обращается ровно к одной партиции.
+--Все книги автора хранятся совместно, без необходимости сканирования других данных.
+--Запрос выполняется за один сетевой hop и один disk I/O.
+--Используемые свойства Cassandra:
+--партиционирование по partition key
+
+SELECT book_id, title, publication_year, category
+FROM books_by_author
+WHERE author_id = 11111111-1111-1111-1111-111111111111;
+
+--Получение книг в заданной категории
+--Запрос
+--частый
+--category_id — partition key, что обеспечивает выборку из одной партиции.
+--rating — clustering key, данные уже отсортированы.
+--Нет дополнительных операций сортировки на стороне сервера.
+--Используемые свойства Cassandra:
+--упорядоченное хранение данных по clustering key;
+SELECT book_id, title, author_name, rating
+FROM books_by_category
+WHERE category_id = ffffffff-ffff-ffff-ffff-ffffffffffff;
+
+--Получение карточки книги
+--Запрос
+--средне
+--book_id — PRIMARY KEY, каждая книга хранится в отдельной партиции.
+--Чтение выполняется напрямую по ключу без сканирования.
+--Используемые свойства Cassandra:
+--прямой доступ по partition key;
+--O(1) lookup.
+SELECT title, authors, category, description, average_rating, ratings_count
+FROM books
+WHERE book_id = aaaaaaaa-0001-0000-0000-aaaaaaaa0001;
+
+--Отзывы по книге
+--Запрос
+--средне
+--book_id — partition key → все отзывы книги в одной партиции.
+--created_at — clustering key с сортировкой DESC.
+--LIMIT позволяет читать только последние записи.
+--Используемые свойства Cassandra:
+--сортировка на уровне хранения;
+--эффективные range-query внутри партиции.
+SELECT user_id, rating, text, created_at
+FROM reviews_by_book_date
+WHERE book_id = aaaaaaaa-0001-0000-0000-aaaaaaaa0001
+LIMIT 10;
+
+--Получение средней оценки книги
+--Таблица (используется та же, что и в запросе 3)
+--Запрос
+--высокий
+--Данные заранее денормализованы под этот сценарий.
+--rating и created_at — clustering keys с нужным порядком сортировки.
+--Используемые свойства Cassandra:
+--разные таблицы под разные паттерны чтения;
+--отсутствие runtime-сортировок.
+SELECT average_rating, ratings_count
+FROM books
+WHERE book_id = aaaaaaaa-0001-0000-0000-aaaaaaaa0001;
+
+--Самые популярные книги в категории
+--Запрос
+--высокий
+--Агрегированные значения хранятся заранее.
+--Cassandra не выполняет вычисления AVG() на чтение.
+--Используемые свойства Cassandra:
+--денормализация;
+--write-time aggregation.
+SELECT book_id, title, rating, popularity_score
+FROM top_books_by_category
+WHERE category_id = ffffffff-ffff-ffff-ffff-ffffffffffff
+LIMIT 10;
+
+--Отзывы по книге, отсортированные по рейтингу
+--Обоснование эффективности
+--средний
+--Данные заранее денормализованы под этот сценарий.
+--rating и created_at — clustering keys с нужным порядком сортировки.
+--Используемые свойства Cassandra:
+--разные таблицы под разные паттерны чтения;
+--отсутствие runtime-сортировок.
+SELECT user_id, rating, text
+FROM reviews_by_book_rating
+WHERE book_id = aaaaaaaa-0001-0000-0000-aaaaaaaa0001
+LIMIT 10;
+
+
+--Все отзывы пользователя
+--Запрос
+--низкий
+--Данные отсортированы по popularity_score.
+--Чтение выполняется без вычислений и сортировок.
+--Используемые свойства Cassandra:
+--кластеризация;
+--pre-sorted storage.
+SELECT book_id, rating, text, created_at
+FROM reviews_by_user
+WHERE user_id = 90000000-0000-0000-0000-000000000001;
+
+--Книги автора в категории
+--Запрос
+--низкий
+--Обоснование эффективности
+--user_id — partition key.
+--История отзывов пользователя хранится локально.
+SELECT book_id, title
+FROM books_by_author_category
+WHERE author_id = 11111111-1111-1111-1111-111111111111
+  AND category_id = dddddddd-dddd-dddd-dddd-dddddddddddd;
+
+
+
+--Найти книги с рейтингом > 4.5 по всем категориям
+SELECT * FROM books WHERE average_rating > 4.5;
+--Фильтрация не по partition key.
+--Требуется полный скан таблицы.
+--Альтернатива
+--Отдельная таблица books_by_rating_range.
+--Или использование Elasticsearch.
+--Или аналитическая СУБД (ClickHouse).
+
+--Получить автора книги по названию
+SELECT authors FROM books WHERE title = '1984';
+--Почему неэффективен
+--title не является ключом.
+--Cassandra не поддерживает поиск по произвольным полям.
+--Альтернатива
+--Таблица books_by_title.
+--Или внешний search-движок.
+
+--Влияние фактора репликации
+--Фактор репликации	            Эффект
+--Доступность	                увеличивается
+--Отказоустойчивость	        выше при отказе узлов
+--Чтение	                    быстрее при CL=ONE
+--Запись	                    медленнее при высоких CL
+--Выбор уровней согласованности
+--Сценарий: просмотр каталога книг
+--Consistency Level: ONE
+
+--допустима eventual consistency;
+--важна скорость.
+
+--Сценарий: запись отзыва пользователя
+--Consistency Level: QUORUM
+
+--важно избежать потери данных;
+--баланс между надёжностью и скоростью.
+
+

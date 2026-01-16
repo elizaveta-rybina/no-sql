@@ -1,0 +1,263 @@
+--books_by_autor
+
+INSERT INTO books_by_author (author_id, book_id, title, publication_year, category)
+VALUES (11111111-1111-1111-1111-111111111111, aaaaaaaa-0001-0000-0000-aaaaaaaa0001, '1984', 1949, dddddddd-dddd-dddd-dddd-dddddddddddd);
+
+INSERT INTO books_by_author (author_id, book_id, title, publication_year, category)
+VALUES (11111111-1111-1111-1111-111111111111, aaaaaaaa-0002-0000-0000-aaaaaaaa0002, 'Animal Farm', 1945, eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee);
+
+INSERT INTO books_by_author (author_id, book_id, title, publication_year, category)
+VALUES (11111111-1111-1111-1111-111111111111, aaaaaaaa-0003-0000-0000-aaaaaaaa0003, 'Homage to Catalonia', 1938,
+        eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee);
+
+INSERT INTO books_by_author (author_id, book_id, title, publication_year, category)
+VALUES (22222222-2222-2222-2222-222222222222, bbbbbbbb-0001-0000-0000-bbbbbbbb0001, 'Harry Potter 1', 1997, ffffffff-ffff-ffff-ffff-ffffffffffff);
+
+INSERT INTO books_by_author (author_id, book_id, title, publication_year, category)
+VALUES (22222222-2222-2222-2222-222222222222, bbbbbbbb-0002-0000-0000-bbbbbbbb0002, 'Harry Potter 2', 1998, ffffffff-ffff-ffff-ffff-ffffffffffff);
+
+INSERT INTO books_by_author (author_id, book_id, title, publication_year, category)
+VALUES (22222222-2222-2222-2222-222222222222, bbbbbbbb-0003-0000-0000-bbbbbbbb0003, 'Harry Potter 3', 1999, ffffffff-ffff-ffff-ffff-ffffffffffff);
+
+INSERT INTO books_by_author (author_id, book_id, title, publication_year, category)
+VALUES (33333333-3333-3333-3333-333333333333, cccccccc-0001-0000-0000-cccccccc0001, 'The Hobbit', 1937, ffffffff-ffff-ffff-ffff-ffffffffffff);
+
+INSERT INTO books_by_author (author_id, book_id, title, publication_year, category)
+VALUES (33333333-3333-3333-3333-333333333333, cccccccc-0002-0000-0000-cccccccc0002, 'The Fellowship of the Ring', 1954,
+        ffffffff-ffff-ffff-ffff-ffffffffffff);
+
+INSERT INTO books_by_author (author_id, book_id, title, publication_year, category)
+VALUES (33333333-3333-3333-3333-333333333333, cccccccc-0003-0000-0000-cccccccc0003, 'The Two Towers', 1954, ffffffff-ffff-ffff-ffff-ffffffffffff);
+
+INSERT INTO books_by_author (author_id, book_id, title, publication_year, category)
+VALUES (33333333-3333-3333-3333-333333333333, cccccccc-0004-0000-0000-cccccccc0004, 'The Return of the King', 1955,
+        ffffffff-ffff-ffff-ffff-ffffffffffff);
+
+
+--books_by_category
+
+INSERT INTO books_by_category (category_id, rating, book_id, title, author_name) VALUES
+    (dddddddd-dddd-dddd-dddd-dddddddddddd, 4.9, aaaaaaaa-0001-0000-0000-aaaaaaaa0001, '1984', 'George Orwell');
+
+INSERT INTO books_by_category (category_id, rating, book_id, title, author_name) VALUES
+    (eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee, 4.7, aaaaaaaa-0002-0000-0000-aaaaaaaa0002, 'Animal Farm', 'George Orwell');
+
+INSERT INTO books_by_category (category_id, rating, book_id, title, author_name) VALUES
+    (eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee, 4.5, aaaaaaaa-0003-0000-0000-aaaaaaaa0003, 'Homage to Catalonia', 'George Orwell');
+
+INSERT INTO books_by_category (category_id, rating, book_id, title, author_name) VALUES
+    (ffffffff-ffff-ffff-ffff-ffffffffffff, 4.9, bbbbbbbb-0001-0000-0000-bbbbbbbb0001, 'Harry Potter 1', 'J. K. Rowling');
+
+INSERT INTO books_by_category (category_id, rating, book_id, title, author_name) VALUES
+    (ffffffff-ffff-ffff-ffff-ffffffffffff, 4.8, bbbbbbbb-0002-0000-0000-bbbbbbbb0002, 'Harry Potter 2', 'J. K. Rowling');
+
+INSERT INTO books_by_category (category_id, rating, book_id, title, author_name) VALUES
+    (ffffffff-ffff-ffff-ffff-ffffffffffff, 4.7, bbbbbbbb-0003-0000-0000-bbbbbbbb0003, 'Harry Potter 3', 'J. K. Rowling');
+
+INSERT INTO books_by_category (category_id, rating, book_id, title, author_name) VALUES
+    (ffffffff-ffff-ffff-ffff-ffffffffffff, 4.8, cccccccc-0001-0000-0000-cccccccc0001, 'The Hobbit', 'J. R. R. Tolkien');
+
+INSERT INTO books_by_category (category_id, rating, book_id, title, author_name) VALUES
+    (ffffffff-ffff-ffff-ffff-ffffffffffff, 4.9, cccccccc-0002-0000-0000-cccccccc0002, 'The Fellowship of the Ring', 'J. R. R. Tolkien');
+
+INSERT INTO books_by_category (category_id, rating, book_id, title, author_name) VALUES
+    (ffffffff-ffff-ffff-ffff-ffffffffffff, 4.8, cccccccc-0003-0000-0000-cccccccc0003, 'The Two Towers', 'J. R. R. Tolkien');
+
+INSERT INTO books_by_category (category_id, rating, book_id, title, author_name) VALUES
+    (ffffffff-ffff-ffff-ffff-ffffffffffff, 4.9, cccccccc-0004-0000-0000-cccccccc0004, 'The Return of the King', 'J. R. R. Tolkien');
+
+
+--books
+
+INSERT INTO books (book_id, title, authors, category, description, average_rating, ratings_count) VALUES
+    (aaaaaaaa-0001-0000-0000-aaaaaaaa0001, '1984', ['George Orwell'], dddddddd-dddd-dddd-dddd-dddddddddddd, 'Novel about a totalitarian future.', 4.9, 1200);
+
+INSERT INTO books (book_id, title, authors, category, description, average_rating, ratings_count) VALUES
+    (aaaaaaaa-0002-0000-0000-aaaaaaaa0002, 'Animal Farm', ['George Orwell'], eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee, 'Political satire.', 4.7, 950);
+
+INSERT INTO books (book_id, title, authors, category, description, average_rating, ratings_count) VALUES
+    (aaaaaaaa-0003-0000-0000-aaaaaaaa0003, 'Homage to Catalonia', ['George Orwell'], eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee, 'Personal account of war.', 4.5, 300);
+
+INSERT INTO books (book_id, title, authors, category, description, average_rating, ratings_count) VALUES
+    (bbbbbbbb-0001-0000-0000-bbbbbbbb0001, 'Harry Potter 1', ['J. K. Rowling'], ffffffff-ffff-ffff-ffff-ffffffffffff, 'Wizarding world begins.', 4.9, 5000);
+
+INSERT INTO books (book_id, title, authors, category, description, average_rating, ratings_count) VALUES
+    (bbbbbbbb-0002-0000-0000-bbbbbbbb0002, 'Harry Potter 2', ['J. K. Rowling'], ffffffff-ffff-ffff-ffff-ffffffffffff, 'Chamber of Secrets.', 4.8, 4700);
+
+INSERT INTO books (book_id, title, authors, category, description, average_rating, ratings_count) VALUES
+    (bbbbbbbb-0003-0000-0000-bbbbbbbb0003, 'Harry Potter 3', ['J. K. Rowling'], ffffffff-ffff-ffff-ffff-ffffffffffff, 'Prisoner of Azkaban.', 4.7, 4500);
+
+INSERT INTO books (book_id, title, authors, category, description, average_rating, ratings_count) VALUES
+    (cccccccc-0001-0000-0000-cccccccc0001, 'The Hobbit', ['J. R. R. Tolkien'], ffffffff-ffff-ffff-ffff-ffffffffffff, 'Adventure of Bilbo.', 4.8, 3800);
+
+INSERT INTO books (book_id, title, authors, category, description, average_rating, ratings_count) VALUES
+    (cccccccc-0002-0000-0000-cccccccc0002, 'The Fellowship of the Ring', ['J. R. R. Tolkien'], ffffffff-ffff-ffff-ffff-ffffffffffff, 'Journey begins.', 4.9, 4100);
+
+INSERT INTO books (book_id, title, authors, category, description, average_rating, ratings_count) VALUES
+    (cccccccc-0003-0000-0000-cccccccc0003, 'The Two Towers', ['J. R. R. Tolkien'], ffffffff-ffff-ffff-ffff-ffffffffffff, 'Middle part of the saga.', 4.8, 3900);
+
+INSERT INTO books (book_id, title, authors, category, description, average_rating, ratings_count) VALUES
+    (cccccccc-0004-0000-0000-cccccccc0004, 'The Return of the King', ['J. R. R. Tolkien'], ffffffff-ffff-ffff-ffff-ffffffffffff, 'Final battle.', 4.9, 4200);
+
+
+
+--reviews_by_book_date
+INSERT INTO reviews_by_book_date (book_id, created_at, user_id, rating, text) VALUES
+    (aaaaaaaa-0001-0000-0000-aaaaaaaa0001, '2024-01-01 10:00:00', 90000000-0000-0000-0000-000000000001, 5, 'Outstanding book.');
+
+INSERT INTO reviews_by_book_date (book_id, created_at, user_id, rating, text) VALUES
+    (aaaaaaaa-0001-0000-0000-aaaaaaaa0001, '2024-01-02 11:00:00', 90000000-0000-0000-0000-000000000002, 5, 'Very powerful.');
+
+INSERT INTO reviews_by_book_date (book_id, created_at, user_id, rating, text) VALUES
+    (aaaaaaaa-0002-0000-0000-aaaaaaaa0002, '2024-01-03 12:00:00', 90000000-0000-0000-0000-000000000003, 4, 'Clever satire.');
+
+INSERT INTO reviews_by_book_date (book_id, created_at, user_id, rating, text) VALUES
+    (bbbbbbbb-0001-0000-0000-bbbbbbbb0001, '2024-01-04 13:00:00', 90000000-0000-0000-0000-000000000004, 5, 'Magical!');
+
+INSERT INTO reviews_by_book_date (book_id, created_at, user_id, rating, text) VALUES
+    (bbbbbbbb-0001-0000-0000-bbbbbbbb0001, '2024-01-05 14:00:00', 90000000-0000-0000-0000-000000000005, 5, 'Loved it.');
+
+INSERT INTO reviews_by_book_date (book_id, created_at, user_id, rating, text) VALUES
+    (bbbbbbbb-0002-0000-0000-bbbbbbbb0002, '2024-01-06 15:00:00', 90000000-0000-0000-0000-000000000006, 4, 'Great sequel.');
+
+INSERT INTO reviews_by_book_date (book_id, created_at, user_id, rating, text) VALUES
+    (cccccccc-0001-0000-0000-cccccccc0001, '2024-01-07 16:00:00', 90000000-0000-0000-0000-000000000007, 5, 'Classic fantasy.');
+
+INSERT INTO reviews_by_book_date (book_id, created_at, user_id, rating, text) VALUES
+    (cccccccc-0002-0000-0000-cccccccc0002, '2024-01-08 17:00:00', 90000000-0000-0000-0000-000000000008, 5, 'Epic.');
+
+INSERT INTO reviews_by_book_date (book_id, created_at, user_id, rating, text) VALUES
+    (cccccccc-0003-0000-0000-cccccccc0003, '2024-01-09 18:00:00', 90000000-0000-0000-0000-000000000009, 4, 'Very good.');
+
+INSERT INTO reviews_by_book_date (book_id, created_at, user_id, rating, text) VALUES
+    (cccccccc-0004-0000-0000-cccccccc0004, '2024-01-10 19:00:00', 90000000-0000-0000-0000-000000000010, 5, 'Perfect ending.');
+
+
+-- reviews_by_book_rating
+INSERT INTO reviews_by_book_rating (book_id, rating, created_at, user_id, text) VALUES
+    (aaaaaaaa-0001-0000-0000-aaaaaaaa0001, 5, '2024-01-01 10:00:00', 90000000-0000-0000-0000-000000000001, 'Outstanding book.');
+
+INSERT INTO reviews_by_book_rating (book_id, rating, created_at, user_id, text) VALUES
+    (aaaaaaaa-0001-0000-0000-aaaaaaaa0001, 5, '2024-01-02 11:00:00', 90000000-0000-0000-0000-000000000002, 'Very powerful.');
+
+INSERT INTO reviews_by_book_rating (book_id, rating, created_at, user_id, text) VALUES
+    (aaaaaaaa-0001-0000-0000-aaaaaaaa0001, 4, '2024-01-03 12:00:00', 90000000-0000-0000-0000-000000000003, 'Still актуально.');
+
+INSERT INTO reviews_by_book_rating (book_id, rating, created_at, user_id, text) VALUES
+    (bbbbbbbb-0001-0000-0000-bbbbbbbb0001, 5, '2024-01-04 13:00:00', 90000000-0000-0000-0000-000000000004, 'Magical.');
+
+INSERT INTO reviews_by_book_rating (book_id, rating, created_at, user_id, text) VALUES
+    (bbbbbbbb-0001-0000-0000-bbbbbbbb0001, 5, '2024-01-05 14:00:00', 90000000-0000-0000-0000-000000000005, 'Loved it.');
+
+INSERT INTO reviews_by_book_rating (book_id, rating, created_at, user_id, text) VALUES
+    (bbbbbbbb-0001-0000-0000-bbbbbbbb0001, 4, '2024-01-06 15:00:00', 90000000-0000-0000-0000-000000000006, 'Great start.');
+
+INSERT INTO reviews_by_book_rating (book_id, rating, created_at, user_id, text) VALUES
+    (cccccccc-0001-0000-0000-cccccccc0001, 5, '2024-01-07 16:00:00', 90000000-0000-0000-0000-000000000007, 'Classic fantasy.');
+
+INSERT INTO reviews_by_book_rating (book_id, rating, created_at, user_id, text) VALUES
+    (cccccccc-0002-0000-0000-cccccccc0002, 5, '2024-01-08 17:00:00', 90000000-0000-0000-0000-000000000008, 'Epic.');
+
+INSERT INTO reviews_by_book_rating (book_id, rating, created_at, user_id, text) VALUES
+    (cccccccc-0003-0000-0000-cccccccc0003, 4, '2024-01-09 18:00:00', 90000000-0000-0000-0000-000000000009, 'Very good.');
+
+INSERT INTO reviews_by_book_rating (book_id, rating, created_at, user_id, text) VALUES
+    (cccccccc-0004-0000-0000-cccccccc0004, 5, '2024-01-10 19:00:00', 90000000-0000-0000-0000-000000000010, 'Perfect ending.');
+
+
+--top_books_by_category
+
+INSERT INTO top_books_by_category (category_id, popularity_score, book_id, title, rating) VALUES
+    (ffffffff-ffff-ffff-ffff-ffffffffffff, 99.9, bbbbbbbb-0001-0000-0000-bbbbbbbb0001, 'Harry Potter 1', 4.9);
+
+INSERT INTO top_books_by_category (category_id, popularity_score, book_id, title, rating) VALUES
+    (ffffffff-ffff-ffff-ffff-ffffffffffff, 99.5, bbbbbbbb-0004-0000-0000-bbbbbbbb0004, 'Harry Potter 4', 4.9);
+
+INSERT INTO top_books_by_category (category_id, popularity_score, book_id, title, rating) VALUES
+    (ffffffff-ffff-ffff-ffff-ffffffffffff, 99.0, cccccccc-0002-0000-0000-cccccccc0002, 'The Fellowship of the Ring', 4.9);
+
+INSERT INTO top_books_by_category (category_id, popularity_score, book_id, title, rating) VALUES
+    (ffffffff-ffff-ffff-ffff-ffffffffffff, 98.7, cccccccc-0004-0000-0000-cccccccc0004, 'The Return of the King', 4.9);
+
+INSERT INTO top_books_by_category (category_id, popularity_score, book_id, title, rating) VALUES
+    (ffffffff-ffff-ffff-ffff-ffffffffffff, 98.5, cccccccc-0001-0000-0000-cccccccc0001, 'The Hobbit', 4.8);
+
+INSERT INTO top_books_by_category (category_id, popularity_score, book_id, title, rating) VALUES
+    (dddddddd-dddd-dddd-dddd-dddddddddddd, 98.9, aaaaaaaa-0001-0000-0000-aaaaaaaa0001, '1984', 4.9);
+
+INSERT INTO top_books_by_category (category_id, popularity_score, book_id, title, rating) VALUES
+    (dddddddd-dddd-dddd-dddd-dddddddddddd, 98.3, dddddddd-0001-0000-0000-dddddddd0001, 'Fahrenheit 451', 4.8);
+
+INSERT INTO top_books_by_category (category_id, popularity_score, book_id, title, rating) VALUES
+    (dddddddd-dddd-dddd-dddd-dddddddddddd, 97.8, dddddddd-0002-0000-0000-dddddddd0002, 'Brave New World', 4.7);
+
+INSERT INTO top_books_by_category (category_id, popularity_score, book_id, title, rating) VALUES
+    (eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee, 96.5, aaaaaaaa-0002-0000-0000-aaaaaaaa0002, 'Animal Farm', 4.7);
+
+INSERT INTO top_books_by_category (category_id, popularity_score, book_id, title, rating) VALUES
+    (eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee, 95.9, aaaaaaaa-0003-0000-0000-aaaaaaaa0003, 'Homage to Catalonia', 4.5);
+
+
+--reviews_by_user
+INSERT INTO reviews_by_user (user_id, created_at, book_id, rating, text) VALUES
+    (90000000-0000-0000-0000-000000000001, '2024-01-01 10:00:00', aaaaaaaa-0001-0000-0000-aaaaaaaa0001, 5, 'Outstanding book.');
+
+INSERT INTO reviews_by_user (user_id, created_at, book_id, rating, text) VALUES
+    (90000000-0000-0000-0000-000000000002, '2024-01-02 11:00:00', aaaaaaaa-0001-0000-0000-aaaaaaaa0001, 5, 'Very powerful.');
+
+INSERT INTO reviews_by_user (user_id, created_at, book_id, rating, text) VALUES
+    (90000000-0000-0000-0000-000000000003, '2024-01-03 12:00:00', aaaaaaaa-0002-0000-0000-aaaaaaaa0002, 4, 'Clever satire.');
+
+INSERT INTO reviews_by_user (user_id, created_at, book_id, rating, text) VALUES
+    (90000000-0000-0000-0000-000000000004, '2024-01-04 13:00:00', bbbbbbbb-0001-0000-0000-bbbbbbbb0001, 5, 'Magical.');
+
+INSERT INTO reviews_by_user (user_id, created_at, book_id, rating, text) VALUES
+    (90000000-0000-0000-0000-000000000005, '2024-01-05 14:00:00', bbbbbbbb-0001-0000-0000-bbbbbbbb0001, 5, 'Loved it.');
+
+INSERT INTO reviews_by_user (user_id, created_at, book_id, rating, text) VALUES
+    (90000000-0000-0000-0000-000000000006, '2024-01-06 15:00:00', bbbbbbbb-0002-0000-0000-bbbbbbbb0002, 4, 'Great sequel.');
+
+INSERT INTO reviews_by_user (user_id, created_at, book_id, rating, text) VALUES
+    (90000000-0000-0000-0000-000000000007, '2024-01-07 16:00:00', cccccccc-0001-0000-0000-cccccccc0001, 5, 'Classic fantasy.');
+
+INSERT INTO reviews_by_user (user_id, created_at, book_id, rating, text) VALUES
+    (90000000-0000-0000-0000-000000000008, '2024-01-08 17:00:00', cccccccc-0002-0000-0000-cccccccc0002, 5, 'Epic.');
+
+INSERT INTO reviews_by_user (user_id, created_at, book_id, rating, text) VALUES
+    (90000000-0000-0000-0000-000000000009, '2024-01-09 18:00:00', cccccccc-0003-0000-0000-cccccccc0003, 4, 'Very good.');
+
+INSERT INTO reviews_by_user (user_id, created_at, book_id, rating, text) VALUES
+    (90000000-0000-0000-0000-000000000010, '2024-01-10 19:00:00', cccccccc-0004-0000-0000-cccccccc0004, 5, 'Perfect ending.');
+
+
+--books_by_author_category
+
+INSERT INTO books_by_author_category (author_id, category_id, book_id, title) VALUES
+    (11111111-1111-1111-1111-111111111111, dddddddd-dddd-dddd-dddd-dddddddddddd, aaaaaaaa-0001-0000-0000-aaaaaaaa0001, '1984');
+
+INSERT INTO books_by_author_category (author_id, category_id, book_id, title) VALUES
+    (11111111-1111-1111-1111-111111111111, eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee, aaaaaaaa-0002-0000-0000-aaaaaaaa0002, 'Animal Farm');
+
+INSERT INTO books_by_author_category (author_id, category_id, book_id, title) VALUES
+    (11111111-1111-1111-1111-111111111111, eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee, aaaaaaaa-0003-0000-0000-aaaaaaaa0003, 'Homage to Catalonia');
+
+INSERT INTO books_by_author_category (author_id, category_id, book_id, title) VALUES
+    (22222222-2222-2222-2222-222222222222, ffffffff-ffff-ffff-ffff-ffffffffffff, bbbbbbbb-0001-0000-0000-bbbbbbbb0001, 'Harry Potter 1');
+
+INSERT INTO books_by_author_category (author_id, category_id, book_id, title) VALUES
+    (22222222-2222-2222-2222-222222222222, ffffffff-ffff-ffff-ffff-ffffffffffff, bbbbbbbb-0002-0000-0000-bbbbbbbb0002, 'Harry Potter 2');
+
+INSERT INTO books_by_author_category (author_id, category_id, book_id, title) VALUES
+    (22222222-2222-2222-2222-222222222222, ffffffff-ffff-ffff-ffff-ffffffffffff, bbbbbbbb-0003-0000-0000-bbbbbbbb0003, 'Harry Potter 3');
+
+INSERT INTO books_by_author_category (author_id, category_id, book_id, title) VALUES
+    (33333333-3333-3333-3333-333333333333, ffffffff-ffff-ffff-ffff-ffffffffffff, cccccccc-0001-0000-0000-cccccccc0001, 'The Hobbit');
+
+INSERT INTO books_by_author_category (author_id, category_id, book_id, title) VALUES
+    (33333333-3333-3333-3333-333333333333, ffffffff-ffff-ffff-ffff-ffffffffffff, cccccccc-0002-0000-0000-cccccccc0002, 'The Fellowship of the Ring');
+
+INSERT INTO books_by_author_category (author_id, category_id, book_id, title) VALUES
+    (33333333-3333-3333-3333-333333333333, ffffffff-ffff-ffff-ffff-ffffffffffff, cccccccc-0003-0000-0000-cccccccc0003, 'The Two Towers');
+
+INSERT INTO books_by_author_category (author_id, category_id, book_id, title) VALUES
+    (33333333-3333-3333-3333-333333333333, ffffffff-ffff-ffff-ffff-ffffffffffff, cccccccc-0004-0000-0000-cccccccc0004, 'The Return of the King');

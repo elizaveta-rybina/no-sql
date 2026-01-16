@@ -213,6 +213,70 @@ function clearQuery() {
 	document.getElementById('query').focus()
 }
 
+async function runFile(fileName) {
+	const resultDiv = document.getElementById('result')
+	if (!currentKeyspace && fileName !== 'tasks') {
+		resultDiv.innerHTML =
+			'<div class="error">❌ <strong>Ошибка:</strong> Выберите keyspace слева перед выполнением скриптов</div>'
+		return
+	}
+
+	resultDiv.innerHTML = `<div style="text-align: center; padding: 20px; color: #667eea;">⏳ Выполнение файла ${fileName}.txt...</div>`
+
+	try {
+		const response = await fetch('/api/run-file', {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({
+				file: fileName,
+				keyspace: fileName === 'tasks' ? null : currentKeyspace
+			})
+		})
+
+		const data = await response.json()
+		if (!response.ok) {
+			resultDiv.innerHTML = `<div class="error">❌ <strong>Ошибка:</strong> ${
+				data.error || 'Не удалось выполнить файл'
+			}</div>`
+			return
+		}
+
+		let html = `
+			<div class="${data.errorCount > 0 ? 'error' : 'success'}">
+				${data.errorCount > 0 ? '⚠️' : '✅'} Выполнено: ${data.successCount}/${
+			data.total
+		}
+			</div>
+		`
+
+		data.results.forEach((r, idx) => {
+			const preview =
+				r.query.substring(0, 120) + (r.query.length > 120 ? '...' : '')
+			if (r.success) {
+				html += `
+					<div style="margin-top: 12px; padding: 10px; background: #e8f5e9; border-radius: 8px;">
+						✅ ${idx + 1}. ${preview}
+						<div style="font-size: 12px; color: #2f855a; margin-top: 4px;">Строк: ${
+							r.rowCount ?? 0
+						}</div>
+					</div>
+				`
+			} else {
+				html += `
+					<div style="margin-top: 12px; padding: 10px; background: #fff5f5; border-radius: 8px; border: 1px solid #feb2b2;">
+						❌ ${idx + 1}. ${preview}
+						<div style="font-size: 12px; color: #c53030; margin-top: 4px;">${r.error}</div>
+					</div>
+				`
+			}
+		})
+
+		resultDiv.innerHTML = html
+	} catch (err) {
+		resultDiv.innerHTML = `<div class="error">❌ <strong>Ошибка:</strong> ${err.message}</div>`
+	}
+}
+
 async function executeQuery() {
 	const query = document.getElementById('query').value.trim()
 	const resultDiv = document.getElementById('result')
